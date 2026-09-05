@@ -3,275 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="DXTRNPHUB - Official Clean & Secure Download Center for Android and PC Games & Apps.">
-    <title>DXTRNPHUB — Official Apps & Games Download Center</title>
+    <title>DXTRNP - Official Website</title>
     <meta name="google-site-verification" content="8Y5dLSvPFVBcjJYrE-_feiYgUGDQrsQzLhXwcTwxgJE" />
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Sticky Clean Navbar -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="brand-logo">
-                <img src="translogo.png" alt="DXTRNPHUB Logo" class="site-logo">
-                <span class="brand-name">DXTRNPHUB</span>
+            <a href="#" class="logo-link">
+                <img src="translogo.png" alt="DXTRNP Logo">
             </a>
-
-            <div class="nav-links" id="navLinks">
-                <a href="#featured" class="nav-link active">Store Catalog</a>
-                <a href="#about" class="nav-link">About Developer</a>
-                <a href="#legal" class="nav-link">Privacy & Legal</a>
-            </div>
-
-            <div class="nav-actions">
-                <div class="search-box">
-                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    <input type="text" id="searchInput" placeholder="Search apps, games, tools...">
-                </div>
-                <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero" class="nav-item active">Home</a></li>
+                <li><a href="#about" class="nav-item">About</a></li>
+                <li><a href="#apps" class="nav-item">Apps & Games</a></li>
+                <li><a href="#legal" class="nav-item">Legal Policy</a></li>
+                <li><a href="#feedback" class="nav-item">Feedback</a></li>
+                <li><a href="#contact-footer" class="nav-item">Contact</a></li>
+                <li><button id="openAdminBtn" class="nav-admin-btn hidden-owner-btn"><i class="fa-solid fa-user-shield"></i> Owner Access</button></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
         </div>
     </nav>
 
-    <!-- Ad Banner Header Placement (AdSense Safe) -->
-    <div class="container ad-wrapper">
-        <div class="ad-slot" id="ad-header">
-            <span class="ad-label">Advertisement</span>
-            <div class="ad-box">Google AdSense Header Banner Slot (728x90)</div>
-        </div>
-    </div>
+    <div id="largeAdsContainer" class="ads-large-wrapper hidden"></div>
 
-    <!-- Main Container -->
-    <main class="container">
-
-        <!-- Hero Branding Section -->
-        <section class="hero-section">
-            <div class="hero-brand-header">
-                <img src="translogo.png" alt="DXTRNPHUB Prominent Brand Logo" class="hero-large-logo">
-                <h1>DXTRNPHUB Download Hub</h1>
-                <p>Your clean, verified, and safe destination for original Android and PC software releases.</p>
+    <section id="hero" class="hero">
+        <div class="hero-container scroll-animate">
+            <span class="trust-badge badge-pulse"><i class="fa-solid fa-shield-halved"></i> Verified & Secure</span>
+            <h1>Welcome to <span class="highlight">DXTRNP</span></h1>
+            <p class="tagline">Providing quality applications, custom software, and responsive support.</p>
+            <div class="hero-actions">
+                <a href="#apps" class="btn btn-primary btn-hover-effect">Explore Apps</a>
+                <a href="#feedback" class="btn btn-secondary btn-hover-effect">Send Feedback</a>
             </div>
-        </section>
-
-        <!-- Main Product Section -->
-        <section id="featured" class="section-padding">
-            <div class="section-title-wrap">
-                <h2>Featured Releases</h2>
-                <p>Select any app or game to view full specifications, gameplay videos, and dedicated download links.</p>
-            </div>
-
-            <div class="filter-bar">
-                <button class="filter-btn active" data-filter="all">All Items</button>
-                <button class="filter-btn" data-filter="android"><i class="fa-brands fa-android"></i> Android</button>
-                <button class="filter-btn" data-filter="pc"><i class="fa-solid fa-desktop"></i> PC Windows</button>
-            </div>
-
-            <!-- Product Cards Grid -->
-            <div class="products-grid" id="productsGrid">
-
-                <!-- ITEM 1: APP SAMPLE -->
-                <div class="product-card" data-category="android" data-title="TaskFlow Studio Productivity">
-                    <div class="card-image-wrap">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="TaskFlow Studio Preview" class="card-img">
-                        <span class="platform-badge badge-android"><i class="fa-brands fa-android"></i> Android</span>
-                    </div>
-
-                    <div class="card-content">
-                        <div class="card-meta-top">
-                            <span class="category-tag">Productivity App</span>
-                            <div class="rating-box"><i class="fa-solid fa-star"></i> 4.8</div>
-                        </div>
-
-                        <h3 class="product-title">TaskFlow Studio</h3>
-                        <p class="product-desc">Smart workflow and task management suite designed for fast multitasking and daily project tracking.</p>
-
-                        <div class="spec-pills">
-                            <span class="spec-pill"><i class="fa-solid fa-download"></i> 12.5k Downloads</span>
-                            <span class="spec-pill"><i class="fa-solid fa-hard-drive"></i> 85 MB</span>
-                        </div>
-
-                        <div class="card-footer">
-                            <span class="ver-info">v1.4.0 • Updated</span>
-                            <button class="open-portal-btn" 
-                                data-id="app-1"
-                                data-title="TaskFlow Studio"
-                                data-category="Productivity Application"
-                                data-platform="Android 8.0+"
-                                data-size="85 MB"
-                                data-downloads="12,500+"
-                                data-rating="4.8 / 5.0"
-                                data-version="v1.4.0 (Official Release)"
-                                data-img="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80"
-                                data-video="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                                data-desc="TaskFlow Studio provides clean task boards, deadline alerts, and automatic cloud syncing. Built originally by DXTRNPHUB for high-efficiency mobile usage."
-                                data-link="https://drive.google.com">
-                                View & Download <i class="fa-solid fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ITEM 2: GAME SAMPLE -->
-                <div class="product-card" data-category="pc" data-title="Aetheria Legends RPG Game">
-                    <div class="card-image-wrap">
-                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80" alt="Aetheria Legends Preview" class="card-img">
-                        <span class="platform-badge badge-pc"><i class="fa-solid fa-desktop"></i> PC Windows</span>
-                    </div>
-
-                    <div class="card-content">
-                        <div class="card-meta-top">
-                            <span class="category-tag">Action RPG Game</span>
-                            <div class="rating-box"><i class="fa-solid fa-star"></i> 4.9</div>
-                        </div>
-
-                        <h3 class="product-title">Aetheria Legends</h3>
-                        <p class="product-desc">An immersive 2.5D action RPG featuring real-time combat, open dungeons, and dynamic weather mechanics.</p>
-
-                        <div class="spec-pills">
-                            <span class="spec-pill"><i class="fa-solid fa-download"></i> 45.8k Downloads</span>
-                            <span class="spec-pill"><i class="fa-solid fa-hard-drive"></i> 1.8 GB</span>
-                        </div>
-
-                        <div class="card-footer">
-                            <span class="ver-info">v2.1.2 • Full Edition</span>
-                            <button class="open-portal-btn" 
-                                data-id="game-1"
-                                data-title="Aetheria Legends"
-                                data-category="Action RPG Video Game"
-                                data-platform="Windows 10 / 11 (64-bit)"
-                                data-size="1.8 GB"
-                                data-downloads="45,800+"
-                                data-rating="4.9 / 5.0"
-                                data-version="v2.1.2 (Latest Build)"
-                                data-img="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1000&q=80"
-                                data-video="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                                data-desc="Enter the world of Aetheria. Experience fluid hack-and-slash combat, customize hero skill trees, and explore offline dungeons with ultra 60FPS support."
-                                data-link="https://mega.nz">
-                                View & Download <i class="fa-solid fa-arrow-right"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Middle Ad Banner Placement -->
-        <div class="ad-wrapper">
-            <div class="ad-slot" id="ad-middle">
-                <span class="ad-label">Advertisement</span>
-                <div class="ad-box">Google AdSense Content Banner Slot (Responsive)</div>
+            <div class="trust-bar">
+                <div class="trust-item"><i class="fa-solid fa-check-circle"></i> Fast Downloads</div>
+                <div class="trust-item"><i class="fa-solid fa-check-circle"></i> Verified Safe</div>
+                <div class="trust-item"><i class="fa-solid fa-check-circle"></i> Direct Support</div>
             </div>
         </div>
+    </section>
 
-        <!-- Trust & Security Highlights -->
-        <section id="about" class="section-padding">
-            <div class="trust-box">
-                <div class="trust-item">
-                    <i class="fa-solid fa-shield-virus trust-icon"></i>
-                    <h4>100% Clean Files</h4>
-                    <p>All builds are scanned for viruses and malware before hosting.</p>
-                </div>
-                <div class="trust-item">
-                    <i class="fa-solid fa-bolt trust-icon"></i>
-                    <h4>Fast Mirror Directs</h4>
-                    <p>Hosted on reliable cloud storage for high-speed download links.</p>
-                </div>
-                <div class="trust-item">
-                    <i class="fa-solid fa-copyright trust-icon"></i>
-                    <h4>Original Software</h4>
-                    <p>Proprietary software directly distributed by DXTRNPHUB.</p>
-                </div>
+    <section id="about" class="section bg-alt">
+        <div class="section-container scroll-animate">
+            <div class="section-header">
+                <h2>About Us</h2>
+                <div class="header-line"></div>
             </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer" id="legal">
-        <div class="container footer-content">
-            <div class="footer-brand">
-                <img src="translogo.png" alt="DXTRNPHUB Footer Logo" class="footer-logo">
-                <p>Official DXTRNPHUB Application and Game Publishing Portal.</p>
-            </div>
-            <div class="footer-links">
-                <a href="#privacy" class="open-legal-modal" data-type="privacy">Privacy Policy</a>
-                <a href="#terms" class="open-legal-modal" data-type="terms">Terms of Service</a>
-                <a href="#dmca" class="open-legal-modal" data-type="dmca">DMCA & Legal Notice</a>
+            <div class="about-card animated-card">
+                <p class="mission-text">Welcome to DXTRNP's official digital platform. We build high-quality applications and tools tailored for modern performance, ease of access, and reliability.</p>
             </div>
         </div>
-        <div class="footer-bottom text-center">
-            <p>&copy; 2026 DXTRNPHUB. All rights reserved.</p>
+    </section>
+
+    <section id="apps" class="section">
+        <div class="section-container scroll-animate">
+            <div class="section-header">
+                <h2>Apps & Games Downloads</h2>
+                <p>Browse and download our latest releases for Mobile and Desktop.</p>
+                <div class="header-line"></div>
+            </div>
+            
+            <div class="cards-grid" id="userAppGrid">
+                </div>
+        </div>
+    </section>
+
+    <section id="legal" class="section bg-alt">
+        <div class="section-container scroll-animate">
+            <div class="section-header">
+                <h2>Legal Policies</h2>
+                <p>Please read our Privacy Policy and Terms of Use carefully before using our platform.</p>
+                <div class="header-line"></div>
+            </div>
+
+            <div class="legal-grid">
+                <div class="legal-box animated-card">
+                    <h3><i class="fa-solid fa-user-lock"></i> Privacy Policy</h3>
+                    <p class="legal-date">Last Updated: September 2026</p>
+                    <div class="legal-text">
+                        <p>DXTRNP is committed to protecting your personal information and respecting your privacy.</p>
+                        <h4>1. Information We Collect</h4>
+                        <p>We do not require users to create registered personal accounts to download applications or games. Any feedback, messages, or inquiries sent through our contact system are handled securely and strictly used for user support.</p>
+                        <h4>2. Use of Information</h4>
+                        <p>Any communication provided to us is solely used to resolve technical issues, gather user suggestions, and improve overall service functionality.</p>
+                        <h4>3. Security & Third Parties</h4>
+                        <p>Your data is never sold, leased, or distributed to third-party vendors. We implement standard web security precautions to maintain safety across all interactions.</p>
+                    </div>
+                </div>
+
+                <div class="legal-box animated-card">
+                    <h3><i class="fa-solid fa-file-contract"></i> Terms of Use</h3>
+                    <p class="legal-date">Last Updated: September 2026</p>
+                    <div class="legal-text">
+                        <p>By accessing or downloading content from DXTRNP, you agree to comply with the following operational terms:</p>
+                        <h4>1. Software License & Usage</h4>
+                        <p>All downloadable software, applications, and games provided on this website are intended solely for personal, non-commercial use. Redistribution or unauthorized modification of files without explicit owner permission is strictly prohibited.</p>
+                        <h4>2. User Responsibilities</h4>
+                        <p>Users must refrain from submitting harmful scripts, spam, or malicious text via our feedback and messaging system.</p>
+                        <h4>3. Disclaimer of Warranties</h4>
+                        <p>While all software is scanned and verified prior to release, DXTRNP provides digital files "as is" and is not responsible for hardware incompatibility resulting from system misconfigurations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="feedback" class="section">
+        <div class="section-container scroll-animate">
+            <div class="section-header">
+                <h2>Submit Feedback</h2>
+                <p>Send your feedback or suggestions directly to the website owner.</p>
+                <div class="header-line"></div>
+            </div>
+
+            <div class="contact-wrapper">
+                <div class="contact-form">
+                    <div class="feedback-box">
+                        <div class="form-group" style="margin-bottom: 1rem;">
+                            <label>Your Message / Feedback</label>
+                            <textarea id="userChatMessageInput" rows="4" placeholder="Type your feedback or suggestion here..."></textarea>
+                        </div>
+                        <div class="feedback-actions">
+                            <label for="userChatMediaInput" class="img-upload-btn" id="userMediaBtn" title="Attach Image or Video">
+                                <i class="fa-solid fa-paperclip"></i> <span id="fileNameDisplay" style="font-size:0.8rem; color:var(--text-muted);">Attach photo or video (optional)</span>
+                            </label>
+                            <input type="file" id="userChatMediaInput" accept="image/*,video/*" class="hidden">
+                            <button id="userSendBtn" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Send Feedback</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact-footer" class="footer">
+        <div class="footer-brand">
+            <img src="translogo.png" alt="DXTRNP Logo">
+            <p>Empowering digital solutions with modern innovation.</p>
+        </div>
+
+        <div class="social-links-wrapper">
+            <a href="https://www.facebook.com/share/14qtzvVmDrr/" target="_blank" rel="noopener noreferrer" aria-label="Facebook Profile">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/dxtrnp?igsi=MXZucDI4ajlrN3R1NQ==" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@dxtrnp" target="_blank" rel="noopener noreferrer" aria-label="TikTok Profile">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 DXTRNP. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- DEDICATED SEPARATE DOWNLOAD GATEWAY PAGE (MODAL / OVERLAY) -->
-    <div class="portal-overlay" id="downloadPortal">
-        <div class="portal-card">
-            <button class="portal-close" id="closePortalBtn">&times;</button>
+    <div id="smallCornerAds" class="small-ads-corner hidden"></div>
 
-            <div class="portal-header">
-                <span class="portal-tag" id="portalCategory">Category</span>
-                <h2 id="portalTitle">Software Title</h2>
+    <div id="secretOwnerDot" class="secret-dot" title=".">.</div>
+
+    <div id="secretAuthModal" class="modal-overlay hidden">
+        <div class="modal-content modal-animate">
+            <button class="close-modal-btn" id="closeSecretAuthBtn">&times;</button>
+            
+            <div id="secretStep1">
+                <h2 style="margin-bottom:0.5rem; color:var(--heading-color);">Owner Access Form</h2>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.2rem;">Fill up the initial details to proceed.</p>
+                
+                <div class="form-group" style="margin-bottom:1rem;">
+                    <label>Full Name</label>
+                    <input type="text" id="secretFullNameInput" placeholder="Enter Full Name">
+                    
+                </div>
+                
+                <div class="form-group" style="margin-bottom:1.5rem;">
+                    <label>Address</label>
+                    <input type="text" id="secretAddressInput" placeholder="Enter Address">
+                    
+                </div>
+
+                <button id="secretStep1NextBtn" class="btn btn-primary btn-block">Enter / Proceed</button>
             </div>
 
-            <!-- Ad Inside Download Gateway Page (High Viewability for AdSense) -->
-            <div class="ad-slot ad-gateway-slot">
-                <span class="ad-label">Sponsored Content</span>
-                <div class="ad-box">Google AdSense Gateway Banner (300x250 / Responsive)</div>
+            <div id="secretStep2" class="hidden">
+                <h2 style="margin-bottom:0.5rem; color:var(--heading-color);">Phone Verification</h2>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1.2rem;">Please enter your Birthday here.</p>
+                
+                <div class="form-group" style="margin-bottom:1rem;">
+                    <label>Birthday</label>
+                    <input type="text" id="secretPhoneInput" placeholder="Enter Birthday">
+                </div>
+
+                <div id="secretPhoneError" class="error-msg" style="margin-bottom:1rem;"></div>
+
+                <div class="auth-modal-actions">
+                    <button id="secretPhoneSubmitBtn" class="btn btn-primary btn-block">Submit Access</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="adminModal" class="modal-overlay hidden">
+        <div class="modal-content modal-animate admin-modal-wide">
+            <button class="close-modal-btn" id="closeAdminBtn">&times;</button>
+
+            <div id="adminPhoneStep">
+                <h3>Website Owner Authentication</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Enter your registered phone number to verify identity.</p>
+                <div class="form-group">
+                    <input type="text" id="adminPhoneInput" placeholder="09102067016">
+                </div>
+                <div id="phoneError" class="error-msg"></div>
+                <button id="sendOtpBtn" class="btn btn-primary btn-block" style="margin-top:1rem;">Send OTP Code</button>
             </div>
 
-            <div class="portal-body">
-                <div class="portal-media">
-                    <img id="portalImage" src="" alt="Main Preview" class="portal-img">
-                    <div class="portal-video-wrap">
-                        <h4><i class="fa-solid fa-play"></i> Video / Gameplay Preview</h4>
-                        <iframe id="portalVideo" src="" frameborder="0" allowfullscreen></iframe>
+            <div id="adminOtpStep" class="hidden">
+                <h3>Enter Verification Code</h3>
+                <p id="otpSentNotice" style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;"></p>
+                <div class="form-group">
+                    <input type="text" id="adminOtpInput" placeholder="6-digit OTP Code">
+                </div>
+                <div id="otpError" class="error-msg"></div>
+                <div class="auth-modal-actions" style="margin-top:1rem;">
+                    <button id="verifyOtpBtn" class="btn btn-primary btn-block">Verify OTP</button>
+                    <button id="backToPhoneBtn" class="btn btn-secondary btn-block">Back</button>
+                </div>
+            </div>
+
+            <div id="adminDashboard" class="hidden">
+                <h2 style="margin-bottom: 0.5rem;"><i class="fa-solid fa-sliders"></i> Website Owner Dashboard</h2>
+                <hr style="margin-bottom: 1.5rem; border-color: var(--border-color);">
+
+                <div class="phone-mgmt-box" style="margin-bottom:1.5rem; background:#fff; border:1px solid var(--accent-blue);">
+                    <h3 style="color:var(--accent-blue);"><i class="fa-solid fa-rectangle-ad"></i> Website Ads Manager</h3>
+                    <p>Post small pop-up ads or large banner ads to display on the website.</p>
+                    
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-top:1rem;">
+                        <div class="form-group">
+                            <label>Ad Type</label>
+                            <select id="adCategory" style="width:100%; padding:0.7rem; border:1px solid var(--border-color); border-radius:6px;">
+                                <option value="small">Small Pop-up Ad (Side Corner)</option>
+                                <option value="large">Large Banner Ad (Top Section)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Ad Title / Heading</label>
+                            <input type="text" id="adTitle" placeholder="e.g. Special Offer 50% Off!">
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top:0.8rem;">
+                        <label>Ad Description / Text</label>
+                        <input type="text" id="adText" placeholder="Brief announcement or promotion text...">
+                    </div>
+
+                    <div class="form-group" style="margin-top:0.8rem;">
+                        <label>Ad Target Link (URL)</label>
+                        <input type="text" id="adTargetUrl" placeholder="https://example.com">
+                    </div>
+
+                    <button id="btnPublishAd" class="btn btn-primary btn-block" style="margin-top:1rem;"><i class="fa-solid fa-bullhorn"></i> Publish Website Ad</button>
+                    
+                    <div style="margin-top:1rem;">
+                        <span style="font-weight:600; font-size:0.85rem;">Active Ads:</span>
+                        <ul id="activeAdsList" class="numbers-ul" style="margin-top:0.5rem;"></ul>
                     </div>
                 </div>
 
-                <div class="portal-details">
-                    <h3>Software Specifications</h3>
-                    <div class="specs-grid">
-                        <div class="spec-box"><small>Supported OS</small><strong id="portalPlatform">Android / PC</strong></div>
-                        <div class="spec-box"><small>File Size</small><strong id="portalSize">0 MB</strong></div>
-                        <div class="spec-box"><small>Total Downloads</small><strong id="portalDownloads">0</strong></div>
-                        <div class="spec-box"><small>User Rating</small><strong id="portalRating">5.0</strong></div>
-                        <div class="spec-box"><small>Version</small><strong id="portalVersion">v1.0</strong></div>
+                <div class="phone-mgmt-box" style="margin-bottom:1.5rem; background:#fff; border:1px solid var(--accent-blue);">
+                    <h3 style="color:var(--accent-blue);"><i class="fa-solid fa-cloud-arrow-up"></i> Upload New App or Game</h3>
+                    <p>Fill out the details below. Uploaded content will immediately appear on the User View.</p>
+                    
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-top:1rem;">
+                        <div class="form-group">
+                            <label>App/Game Title</label>
+                            <input type="text" id="uploadTitle" placeholder="e.g. Cyber Runner 3D">
+                        </div>
+                        <div class="form-group">
+                            <label>Category Badge</label>
+                            <input type="text" id="uploadBadge" placeholder="e.g. Action Game, Productivity">
+                        </div>
+                        <div class="form-group">
+                            <label>File Size (MB or GB)</label>
+                            <input type="text" id="uploadSize" placeholder="e.g. 2.5 GB or 120 MB">
+                        </div>
+                        <div class="form-group">
+                            <label>Platform Compatibility</label>
+                            <select id="uploadPlatform" style="width:100%; padding:0.7rem; border:1px solid var(--border-color); border-radius:6px;">
+                                <option value="Android">Android Only</option>
+                                <option value="PC">PC Only</option>
+                                <option value="Both">Both PC & Android</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <h3>Description & Features</h3>
-                    <p id="portalDesc" class="portal-description-text"></p>
+                    <div class="form-group" style="margin-top:0.8rem;">
+                        <label>Description</label>
+                        <input type="text" id="uploadDesc" placeholder="Brief explanation of the app or game...">
+                    </div>
 
-                    <!-- Safe Countdown Download Section -->
-                    <div class="download-action-card">
-                        <div class="download-timer-wrap">
-                            <span id="timerText">Your download link will generate in <strong id="countdown">5</strong> seconds...</span>
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-top:0.8rem;">
+                        <div class="form-group">
+                            <label>Android Download Link</label>
+                            <input type="text" id="uploadAndroidUrl" placeholder="https://...">
                         </div>
-                        <a href="#" id="finalDownloadBtn" class="btn btn-download-primary disabled" target="_blank" rel="noopener">
-                            <i class="fa-solid fa-download"></i> Download Package Now
-                        </a>
-                        <small class="secure-note"><i class="fa-solid fa-lock"></i> Verified Safe & Digitally Signed Download</small>
+                        <div class="form-group">
+                            <label>PC Download Link</label>
+                            <input type="text" id="uploadPcUrl" placeholder="https://...">
+                        </div>
+                    </div>
+
+                    <button id="btnPublishApp" class="btn btn-primary btn-block" style="margin-top:1rem;"><i class="fa-solid fa-plus"></i> Publish App / Game</button>
+                    
+                    <div style="margin-top:1.5rem; border-top: 1px dashed var(--border-color); padding-top: 1rem;">
+                        <h4 style="color:var(--heading-color); margin-bottom: 0.5rem;"><i class="fa-solid fa-list-check"></i> Manage Existing Apps & Games</h4>
+                        <div id="ownerAppsManagerList" class="owner-apps-list"></div>
+                    </div>
+                </div>
+
+                <div class="phone-mgmt-box">
+                    <h3>Registered Owner Phone Numbers</h3>
+                    <p>Manage numbers authorized to access the Website Owner View.</p>
+                    <div class="phone-mgmt-controls">
+                        <input type="text" id="newOwnerPhoneInput" placeholder="New phone number">
+                        <button id="addPhoneBtn" class="btn btn-primary btn-sm">Add</button>
+                    </div>
+                    <div class="current-numbers-list">
+                        <span>Current Registered Numbers:</span>
+                        <ul id="ownerNumbersList" class="numbers-ul"></ul>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom:0.8rem;">User Inquiries & Feedback Inbox</h3>
+                <div class="admin-chat-layout">
+                    <div class="user-list-sidebar" id="adminUserList"></div>
+                    <div class="admin-active-chat">
+                        <div class="active-chat-header" id="activeChatHeader">Select a user to view conversation</div>
+                        <div class="chat-messages" id="adminChatMessages"></div>
+                        <div class="chat-input-area" id="adminInputArea" style="display: none;">
+                            <input type="text" id="adminChatMessageInput" placeholder="Reply to user...">
+                            <label for="adminChatMediaInput" class="img-upload-btn"><i class="fa-solid fa-paperclip"></i></label>
+                            <input type="file" id="adminChatMediaInput" accept="image/*,video/*" class="hidden">
+                            <button id="adminSendBtn" class="btn btn-primary btn-sm"><i class="fa-solid fa-paper-plane"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Legal Policy Modal -->
-    <div class="legal-modal" id="legalModal">
-        <div class="legal-card">
-            <button class="legal-close" id="closeLegalBtn">&times;</button>
-            <div id="legalContent"></div>
+    <div id="otpPopup" class="otp-popup hidden">
+        <div class="otp-popup-content">
+            <i class="fa-solid fa-comment-sms"></i>
+            <div>
+                <strong>SMS Notification Simulation</strong>
+                <p id="otpPopupText">Security Code: ------</p>
+            </div>
+            <button id="closeOtpPopupBtn">&times;</button>
         </div>
     </div>
 
