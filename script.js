@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // OWNER LOGO CONFIGURATION
     const OWNER_LOGO_URL = "translogo.png";
 
-    // REGISTERED OWNER PHONE NUMBERS (DEFAULT OWNER NUMBER)
+    // REGISTERED OWNER PHONE NUMBERS
     let defaultOwnerPhones = ["09102067016"]; 
     let registeredPhones = JSON.parse(localStorage.getItem('dxtrnp_owner_phones')) || defaultOwnerPhones;
 
@@ -15,7 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
             desc: "All-in-one system optimizer and security tool for PC and Android.",
             platform: "Both",
             androidUrl: "#",
-            pcUrl: "#"
+            pcUrl: "#",
+            media: null,
+            mediaType: null
         },
         {
             title: "Shadow Quest 3D",
@@ -23,7 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
             size: "1.8 GB",
             desc: "High-graphics offline RPG adventure optimized for PC.",
             platform: "PC",
-            pcUrl: "#"
+            pcUrl: "#",
+            media: null,
+            mediaType: null
         }
     ];
 
@@ -36,11 +40,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeVerifyingPhone = null;
     let selectedFeedbackMedia = null;
     let selectedFeedbackMediaType = null;
+    
+    let selectedAppMedia = null;
+    let selectedAppMediaType = null;
 
     // DOM ELEMENTS
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
-    const openAdminBtn = document.getElementById('openAdminBtn');
     
     // SECRET DOT & SECRET AUTH FORM ELEMENTS
     const secretOwnerDot = document.getElementById('secretOwnerDot');
@@ -76,6 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const uploadDesc = document.getElementById('uploadDesc');
     const uploadAndroidUrl = document.getElementById('uploadAndroidUrl');
     const uploadPcUrl = document.getElementById('uploadPcUrl');
+    const uploadAppMediaInput = document.getElementById('uploadAppMediaInput');
+    const appMediaNameDisplay = document.getElementById('appMediaNameDisplay');
     const btnPublishApp = document.getElementById('btnPublishApp');
     const ownerAppsManagerList = document.getElementById('ownerAppsManagerList');
 
@@ -111,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const adminUserList = document.getElementById('adminUserList');
     const adminChatMessages = document.getElementById('adminChatMessages');
     const activeChatHeader = document.getElementById('activeChatHeader');
+    const adminDeleteChatBtn = document.getElementById('adminDeleteChatBtn');
     const adminInputArea = document.getElementById('adminInputArea');
     const adminChatMessageInput = document.getElementById('adminChatMessageInput');
     const adminChatMediaInput = document.getElementById('adminChatMediaInput');
@@ -125,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderUserApps();
     renderWebsiteAds();
 
-    // 0.1 SECRET DOT TRIGGER & 2-STEP AUTHENTICATION
+    // SECRET DOT TRIGGER & 2-STEP AUTHENTICATION
     if (secretOwnerDot) {
         secretOwnerDot.addEventListener('click', () => {
             secretAuthModal.classList.remove('hidden');
@@ -172,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 0.2 ADS PUBLISHING LOGIC
+    // ADS PUBLISHING LOGIC
     if (btnPublishAd) {
         btnPublishAd.addEventListener('click', () => {
             const category = adCategory.value;
@@ -265,7 +274,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 0.3 DYNAMIC APP PUBLISHING & DELETION
+    // DYNAMIC APP PUBLISHING & DELETION
+    if (uploadAppMediaInput) {
+        uploadAppMediaInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                appMediaNameDisplay.textContent = `Selected: ${file.name}`;
+                selectedAppMediaType = file.type.startsWith('video') ? 'video' : 'image';
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    selectedAppMedia = evt.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
     if (btnPublishApp) {
         btnPublishApp.addEventListener('click', () => {
             const title = uploadTitle.value.trim();
@@ -281,16 +305,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const newApp = { id: Date.now(), title, badge, size, platform, desc, androidUrl, pcUrl };
+            const newApp = { 
+                id: Date.now(), 
+                title, 
+                badge, 
+                size, 
+                platform, 
+                desc, 
+                androidUrl, 
+                pcUrl,
+                media: selectedAppMedia,
+                mediaType: selectedAppMediaType
+            };
+
             uploadedApps.unshift(newApp);
             localStorage.setItem('dxtrnp_apps', JSON.stringify(uploadedApps));
-            
+
             uploadTitle.value = '';
             uploadBadge.value = '';
             uploadSize.value = '';
             uploadDesc.value = '';
             uploadAndroidUrl.value = '';
             uploadPcUrl.value = '';
+            uploadAppMediaInput.value = '';
+            appMediaNameDisplay.textContent = '';
+            selectedAppMedia = null;
+            selectedAppMediaType = null;
 
             renderUserApps();
             renderOwnerAppsManager();
@@ -358,9 +398,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
             }
 
+            let mediaPreviewHtml = '';
+            if (app.media) {
+                if (app.mediaType === 'video') {
+                    mediaPreviewHtml = `<video src="${app.media}" controls class="app-card-media"></video>`;
+                } else {
+                    mediaPreviewHtml = `<img src="${app.media}" alt="${escapeHtml(app.title)} preview" class="app-card-media">`;
+                }
+            }
+
             card.innerHTML = `
                 <span class="card-badge">${escapeHtml(app.badge)}</span>
                 <div class="card-icon"><i class="fa-solid fa-gamepad"></i></div>
+                ${mediaPreviewHtml}
                 <h3>${escapeHtml(app.title)}</h3>
                 <p>${escapeHtml(app.desc)}</p>
                 <div class="card-meta">
@@ -376,14 +426,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 1. MOBILE MENU TOGGLE
+    // MOBILE MENU TOGGLE
     if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
     }
 
-    // 2. SCROLL ANIMATION OBSERVER
+    // SCROLL ANIMATION OBSERVER
     const observerOptions = { threshold: 0.15 };
     const scrollObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -398,7 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollObserver.observe(section);
     });
 
-    // 3. ONE-WAY FEEDBACK SUBMISSION LOGIC (PHOTOS & VIDEOS SUPPORT)
+    // ONE-WAY FEEDBACK SUBMISSION LOGIC
     if (userChatMediaInput) {
         userChatMediaInput.addEventListener('change', (e) => {
             const file = e.target.files[0];
@@ -444,7 +494,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         localStorage.setItem('dxtrnp_chats', JSON.stringify(allChats));
 
-        // RESET FORM AND SHOW CONFIRMATION TO USER
         userChatMessageInput.value = '';
         userChatMediaInput.value = '';
         selectedFeedbackMedia = null;
@@ -454,14 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Thank you! Your feedback has been sent to the website owner.');
     }
 
-    // 4. ADMIN AUTHENTICATION
-    if (openAdminBtn) {
-        openAdminBtn.addEventListener('click', () => {
-            adminModal.classList.remove('hidden');
-            resetAdminModalState();
-        });
-    }
-
+    // ADMIN AUTHENTICATION
     if (closeAdminBtn) {
         closeAdminBtn.addEventListener('click', () => {
             adminModal.classList.add('hidden');
@@ -472,16 +514,6 @@ document.addEventListener('DOMContentLoaded', () => {
         closeOtpPopupBtn.addEventListener('click', () => {
             otpPopup.classList.add('hidden');
         });
-    }
-
-    function resetAdminModalState() {
-        adminPhoneStep.classList.remove('hidden');
-        adminOtpStep.classList.add('hidden');
-        adminDashboard.classList.add('hidden');
-        phoneError.textContent = '';
-        otpError.textContent = '';
-        adminPhoneInput.value = '';
-        adminOtpInput.value = '';
     }
 
     if (sendOtpBtn) {
@@ -534,7 +566,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 5. PHONE NUMBER MANAGEMENT
+    // PHONE NUMBER MANAGEMENT
     function renderOwnerPhoneNumbers() {
         if (!ownerNumbersList) return;
         ownerNumbersList.innerHTML = '';
@@ -575,7 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderOwnerPhoneNumbers();
     }
 
-    // 6. ADMIN CHAT DASHBOARD & FEEDBACK MEDIA VIEW
+    // ADMIN CHAT DASHBOARD & FEEDBACK MANAGEMENT
     function loadAdminUserList() {
         if (!adminUserList) return;
         const allChats = JSON.parse(localStorage.getItem('dxtrnp_chats') || '{}');
@@ -585,6 +617,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (users.length === 0) {
             adminUserList.innerHTML = '<div style="padding:1rem; text-align:center; color:var(--text-muted);">No user feedback received yet.</div>';
+            adminChatMessages.innerHTML = '';
+            activeChatHeader.querySelector('span').textContent = 'Select a user to view feedback';
+            adminDeleteChatBtn.classList.add('hidden');
+            adminInputArea.style.display = 'none';
             return;
         }
 
@@ -602,7 +638,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function loadAdminConversation(username) {
-        activeChatHeader.textContent = `Feedback from: ${username}`;
+        if (!activeChatHeader) return;
+        
+        activeChatHeader.querySelector('span').textContent = `Feedback from: ${username}`;
+        adminDeleteChatBtn.classList.remove('hidden');
         adminInputArea.style.display = 'flex';
 
         const allChats = JSON.parse(localStorage.getItem('dxtrnp_chats') || '{}');
@@ -634,6 +673,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         adminChatMessages.scrollTop = adminChatMessages.scrollHeight;
+    }
+
+    if (adminDeleteChatBtn) {
+        adminDeleteChatBtn.addEventListener('click', () => {
+            if (!activeAdminSelectedUser) return;
+
+            if (confirm(`Are you sure you want to delete feedback history from ${activeAdminSelectedUser}?`)) {
+                const allChats = JSON.parse(localStorage.getItem('dxtrnp_chats') || '{}');
+                delete allChats[activeAdminSelectedUser];
+                localStorage.setItem('dxtrnp_chats', JSON.stringify(allChats));
+
+                activeAdminSelectedUser = null;
+                loadAdminUserList();
+                alert('Feedback entry deleted successfully.');
+            }
+        });
     }
 
     if (adminSendBtn) adminSendBtn.addEventListener('click', () => sendAdminMessage());
